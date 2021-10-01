@@ -22,14 +22,28 @@ public class Solution26 {
     b = balance
     p = monthly payments
      */
-    public static class PaymentCalculator{
-        public static void main(String[] args){
+}
+class PaymentCalculator{
+    private static final Scanner in = new Scanner(System.in);
+    public static void main(String[] args){
+        calculateMonthsUntilPaidOff();
+    }
 
-        }
-        void calculateMonthsUntilPaidOff(){
-            //Math goes here:
-            //Refer to the above n = formula
-            //Return the number of months from the formula.
-        }
+    public static void calculateMonthsUntilPaidOff(){
+        //Math goes here:
+        //Refer to the above n = formula
+        //Return the number of months from the formula.
+        System.out.print("What is your balance? ");
+        int b = in.nextInt();
+        System.out.print("What is the APR on the card (as a percent)? ");
+        int a = in.nextInt();
+        System.out.print("What is the monthly payment you can make? ");
+        int p = in.nextInt();
+
+        int i = (a/365); //daily rate conversion
+
+        double n = -(1/30) * Math.log10(1 + b/p * (1 - (1 + i)^30)) / Math.log10(1 + i);
+        System.out.print("It will take you " + n + " months to pay off this card.");
+
     }
 }
