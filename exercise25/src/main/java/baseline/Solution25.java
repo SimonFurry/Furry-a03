@@ -3,7 +3,11 @@ package baseline;
  *  UCF COP3330 Fall 2021 Assignment 3 Solutions
  *  Copyright 2021 Simon Furry
  */
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Set;
+
 
 public class Solution25 {
     /*
@@ -36,5 +40,39 @@ public class Solution25 {
     System.out.print("The password '" + userPassword + "' is a " + result + "password.";
      */
 
+        System.out.print("Please enter your password: ");
+        String userInput = in.next();
+
+        //Defines the length of user input to see, "hey this is/isn't greater than 8!"
+        int n = userInput.length();
+        boolean hasLett = false, hasDigit = false, specialChar = false;
+
+        //Make Special Characters valid.
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
+
+        for (char i : userInput.toCharArray()) {
+            if (Character.isLetter(i))
+                hasLett = true;
+            if (Character.isDigit(i))
+                hasDigit = true;
+            if (set.contains(i))
+                specialChar = true;
+        }
+         {
+            //Determine Strength
+            if (hasDigit && hasLett && specialChar && (n >= 8)) {
+                String result = "Very Strong";
+                System.out.print("The password '" + userInput + "' is a " + result + " password.");
+            } else if ((hasLett && hasDigit) && (n >= 8)) {
+                String result = "Strong";
+                System.out.print("The password '" + userInput + "' is a " + result + " password.");
+            } else if ((hasLett) && (n <= 8)) {
+                String result = "Weak";
+                System.out.print("The password '" + userInput + "' is a " + result + " password.");
+            } else if ((hasDigit) && (n <= 8)) {
+                String result = "Very Weak";
+                System.out.print("The password '" + userInput + "' is a " + result + " password.");
+            }
+        }
     }
 }
