@@ -13,6 +13,6 @@ public class Solution28 {
 
     }
     static void counter(){
-        
+
     }
 }
