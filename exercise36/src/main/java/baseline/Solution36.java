@@ -4,6 +4,9 @@ package baseline;
  *  Copyright 2021 Simon Furry
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Solution36 {
@@ -18,19 +21,64 @@ public class Solution36 {
     std += Math.pow(num - mean, 2);
      */
     private static final Scanner in = new Scanner(System.in);
-    public static void main(String[] args){
 
-    }
-    public static void average(){
+    public static void main(String[] args) {
+        List<Integer> number = new ArrayList<>();
 
-    }
-    public static void max(){
+        int num = 0;
+        boolean isNumber = true;
+        while (isNumber = true) {
+            System.out.print("Enter a number: ");
+                if (in.hasNextInt()) {
+                    number.add(in.nextInt());
+                    isNumber = true;
+                } else {
+                    isNumber = false;
+                    break;
+                }
+            } while (isNumber = false);
+            System.out.print("Numbers: " + number);
 
-    }
-    public static void min(){
+            average(number);
+            min(number);
+            max(number);
+            std(number);
+        }
 
+
+    public static void average(List<Integer> number){
+        int sum = 0;
+        for(int i = 0; i < number.size(); i++){
+            sum += number.get(i);
+        }
+        int average = sum / number.size();
+        System.out.print("\nThe average is " + average);
     }
-    public static void std(){
-        
+    public static void max(List<Integer> number){
+        Collections.sort(number);
+        System.out.print("\nThe max is " + number.get(number.size() - 1));
+    }
+    public static void min(List<Integer> number){
+        Collections.sort(number);
+        System.out.print("\nThe max is " + number.get(0));
+    }
+    public static void std(List<Integer> number){
+        double sum = 0.0;
+        double standardDeviation = 0.0;
+        double sq = 0.0;
+        double res = 0.0;
+
+        for(int i = 0; i < number.size(); i++){
+            sum += number.get(i);
+        }
+        double mean = sum / number.size();
+        for(int i = 0; i < number.size(); i++){
+           standardDeviation = standardDeviation + Math.pow((number.get(i) - mean), 2);
+        }
+        sq = standardDeviation / number.size();
+        res = Math.sqrt(sq);
+        double resRounded = Math.round(res * 100.0) /100.0;
+
+        System.out.print("\nThe standard deviation is " + resRounded);
     }
 }
