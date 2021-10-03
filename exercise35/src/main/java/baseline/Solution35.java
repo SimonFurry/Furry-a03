@@ -17,12 +17,23 @@ if input is "" blank, break loop, run rng to determine winner
 if user input is "name" continue loop.
  */
     private static final Scanner in = new Scanner(System.in);
-
     public static void main(String[] args){
         winner();
     }
-    static void winner(){
-        
+    static void winner() {
+
+        ArrayList<String> name = new ArrayList<>();
+        Random rand = new Random();
+
+        while (true) {
+            System.out.print("Enter a name: ");
+            name.add(in.next());
+            if (name.equals("")) {
+                int randomize = rand.nextInt(name.size() - 1);
+                System.out.print("The winner is... " + randomize);
+                break;
+            }
+        }
     }
 
 }
